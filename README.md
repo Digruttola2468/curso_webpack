@@ -84,3 +84,21 @@ Babel te ayuda a transpilar el código JavaScript, a un resultado el cual todos 
 [babel-loader](https://webpack.js.org/loaders/babel-loader/)
 
 [ECMAScript Modules](https://webpack.js.org/guides/ecma-script-modules/)
+
+## HTML en WebPack
+
+Colocamos la siguiente linea de comando para que webpack pueda entender nuestro HTML y preparalo para nuestra carpeta dist
+`npm install html-webpack-plugin -D`.
+
+Y nuestro webpack quedara asi:
+
+```JSON
+...,
+plugins: [
+        new HtmlWebPackPlugin({
+            inject: true,
+            template: './public/index.html',
+            filename: './index.html'
+        })
+    ]
+```
