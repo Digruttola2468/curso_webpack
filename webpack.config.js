@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
+//Añadimos nuestro plugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 //Entry -> cual es nuestro punto de entrada de nuestra aplicacion
 module.exports = {
     entry: './src/index.js',
@@ -22,6 +25,15 @@ module.exports = {
                 },
                 // Exclude permite omitir archivos o carpetas especificas
                 exclude: /node_modules/
+            },
+            //Creamos el loader de nuestra regla de css
+            {
+                test: /\.css|.styl$/i,
+                use: [
+                    MiniCssExtractPlugin.loader, 
+                    'css-loader',
+                    'stylus-loader'
+                ],
             }
         ]
     },
@@ -30,7 +42,9 @@ module.exports = {
             inject: true,
             template: './public/index.html',
             filename: './index.html'
-        })
+        }),
+        //Y la utilizacion de nuestro plugins
+        new MiniCssExtractPlugin(),
     ]
 
 
