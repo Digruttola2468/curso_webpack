@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 //Añadimos nuestro plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -45,6 +46,15 @@ module.exports = {
         }),
         //Y la utilizacion de nuestro plugins
         new MiniCssExtractPlugin(),
+        new CopyPlugin({
+            //Cuales son los elementos que vamos a utilizar?
+            patterns: [
+                {
+                    from: path.resolve(__dirname, "src", "assets/images"),
+                    to: "assets/images"
+                }
+            ]
+        }),
     ]
 
 

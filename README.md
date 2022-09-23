@@ -129,3 +129,24 @@ Para trabajar con procesadores vamos a installar `npm install stylus stylus-load
 [style-loader](https://webpack.js.org/loaders/style-loader/)
 
 [MiniCssExtractPlugin](https://webpack.js.org/plugins/mini-css-extract-plugin/)
+
+## Copia de archivos con Webpack
+
+Cuando estes en un proyecto ves la necesidad de mover archivos o elementos dentro de la carpeta `src` a la carpeta de `dist` entonces usaremos el siguiente plugin: `npm install copy-webpack-plugin -D`
+
+donde en `webpack.config.js` colocamos lo siguiente:
+
+```JSON
+plugins: [
+        ...,
+        new CopyPlugin({
+            //Cuales son los elementos que vamos a utilizar?
+            patterns: [
+                {
+                    from: path.resolve(__dirname, "src", "assets/images"),
+                    to: "assets/images"
+                }
+            ]
+        }),
+    ]
+```
